@@ -1,0 +1,48 @@
+# Two ThrottleX instances sharing one Redis, to demonstrate distributed
+# rate limiting. Start with:  docker compose up --build
+#
+#   instance 1: http://localhost:8081
+#   instance 2: http://localhost:8082
+#   redis:      localhost:6379 (also used by integration tests)
+#
+# Values like ${THROTTLEX_LIMIT:-10} can be overridden in a .env file next
+# to this one (see .env.example).
+name: throttlex
+
+services:
+  redis:
+    image: redis:7.4-alpine
+    # No persistence: rate-limit state is short-lived by design.
+    # volatile-ttl evicts the keys closest to expiry if memory runs out
+    # (every ThrottleX key has a TTL).
+    command: ["redis-server", "--save", "", "--appendonly", "no", "--maxmemory", "256mb", "--maxmemory-policy", "volatile-ttl"]
+    ports:
+      - "127.0.0.1:6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  throttlex-1: &throttlex
+    build: .
+    environment:
+      THROTTLEX_BACKEND: redis
+      THROTTLEX_REDIS_ADDR: redis:6379
+      THROTTLEX_ALGORITHM: ${THROTTLEX_ALGORITHM:-token_bucket}
+      THROTTLEX_LIMIT: ${THROTTLEX_LIMIT:-10}
+      THROTTLEX_WINDOW: ${THROTTLEX_WINDOW:-1m}
+      THROTTLEX_FAILURE_POLICY: ${THROTTLEX_FAILURE_POLICY:-closed}
+      THROTTLEX_LOG_LEVEL: ${THROTTLEX_LOG_LEVEL:-info}
+      THROTTLEX_ADMIN_TOKEN: ${THROTTLEX_ADMIN_TOKEN:-}
+    ports:
+      - "127.0.0.1:8081:8080"
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  throttlex-2:
+    <<: *throttlex
+    ports:
+      - "127.0.0.1:8082:8080"

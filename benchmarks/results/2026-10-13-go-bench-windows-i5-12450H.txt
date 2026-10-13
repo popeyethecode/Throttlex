@@ -1,0 +1,69 @@
+goos: windows
+goarch: amd64
+pkg: github.com/popeyethecode/throttlex/limiter
+cpu: 12th Gen Intel(R) Core(TM) i5-12450H
+BenchmarkAllow/fixed_window/serial            	11119532	       101.0 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/fixed_window/serial-4          	12906986	       116.1 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/fixed_window/serial-12         	13831434	        95.57 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/fixed_window/parallel_hot_key            	13086678	        81.95 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/fixed_window/parallel_hot_key-4          	10428307	       107.2 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/fixed_window/parallel_hot_key-12         	 9240684	       125.9 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/fixed_window/parallel_10k_keys           	16964678	        78.30 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/fixed_window/parallel_10k_keys-4         	26046018	        39.96 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/fixed_window/parallel_10k_keys-12        	40909555	        25.72 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/sliding_log/serial                       	16781808	        75.32 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/sliding_log/serial-4                     	15612862	        74.36 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/sliding_log/serial-12                    	16241148	        77.18 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/sliding_log/parallel_hot_key             	14942694	        68.40 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/sliding_log/parallel_hot_key-4           	 9975468	       116.2 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/sliding_log/parallel_hot_key-12          	 8057199	       143.2 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/sliding_log/parallel_10k_keys            	13328356	        83.99 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/sliding_log/parallel_10k_keys-4          	22077938	        46.44 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/sliding_log/parallel_10k_keys-12         	40272241	        29.97 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/sliding_counter/serial                   	15370485	        78.19 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/sliding_counter/serial-4                 	15178422	        77.21 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/sliding_counter/serial-12                	14950290	        79.58 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/sliding_counter/parallel_hot_key         	16775332	        71.49 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/sliding_counter/parallel_hot_key-4       	 9742537	       132.2 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/sliding_counter/parallel_hot_key-12      	 8360265	       148.4 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/sliding_counter/parallel_10k_keys        	16312525	        77.36 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/sliding_counter/parallel_10k_keys-4      	25343670	        44.12 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/sliding_counter/parallel_10k_keys-12     	41708374	        29.22 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/token_bucket/serial                      	16578936	        76.86 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/token_bucket/serial-4                    	16176714	        75.72 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/token_bucket/serial-12                   	16264834	        81.53 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/token_bucket/parallel_hot_key            	17368648	        72.54 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/token_bucket/parallel_hot_key-4          	10173600	       117.9 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/token_bucket/parallel_hot_key-12         	 8046805	       140.7 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/token_bucket/parallel_10k_keys           	14580146	        80.73 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/token_bucket/parallel_10k_keys-4         	23711665	        44.26 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAllow/token_bucket/parallel_10k_keys-12        	39356262	        27.88 ns/op	       0 B/op	       0 allocs/op
+BenchmarkShards/shards=1                                	14781855	        84.24 ns/op	       0 B/op	       0 allocs/op
+BenchmarkShards/shards=1-4                              	 7449898	       152.0 ns/op	       0 B/op	       0 allocs/op
+BenchmarkShards/shards=1-12                             	 5843697	       201.0 ns/op	       0 B/op	       0 allocs/op
+BenchmarkShards/shards=64                               	13102710	        83.10 ns/op	       0 B/op	       0 allocs/op
+BenchmarkShards/shards=64-4                             	22958334	        44.92 ns/op	       0 B/op	       0 allocs/op
+BenchmarkShards/shards=64-12                            	37890747	        28.47 ns/op	       0 B/op	       0 allocs/op
+BenchmarkMemoryPerKey/fixed_window                      	      42	  26300707 ns/op	        82.99 bytes/key	11778284 B/op	  101411 allocs/op
+BenchmarkMemoryPerKey/fixed_window-4                    	      49	  26428622 ns/op	        82.99 bytes/key	11778272 B/op	  101411 allocs/op
+BenchmarkMemoryPerKey/fixed_window-12                   	      44	  26203061 ns/op	        82.99 bytes/key	11778306 B/op	  101411 allocs/op
+BenchmarkMemoryPerKey/sliding_log                       	      20	  58223495 ns/op	       995.0 bytes/key	102978324 B/op	  201411 allocs/op
+BenchmarkMemoryPerKey/sliding_log-4                     	      21	  55430205 ns/op	       995.0 bytes/key	102978299 B/op	  201411 allocs/op
+BenchmarkMemoryPerKey/sliding_log-12                    	      24	  54803200 ns/op	       995.0 bytes/key	102978309 B/op	  201411 allocs/op
+BenchmarkMemoryPerKey/sliding_counter                   	      48	  26767625 ns/op	        82.99 bytes/key	11778298 B/op	  101411 allocs/op
+BenchmarkMemoryPerKey/sliding_counter-4                 	      43	  26818495 ns/op	        82.99 bytes/key	11778289 B/op	  101411 allocs/op
+BenchmarkMemoryPerKey/sliding_counter-12                	      45	  27529571 ns/op	        82.99 bytes/key	11778295 B/op	  101411 allocs/op
+BenchmarkMemoryPerKey/token_bucket                      	      40	  28140200 ns/op	        98.99 bytes/key	13378302 B/op	  101411 allocs/op
+BenchmarkMemoryPerKey/token_bucket-4                    	      42	  28639955 ns/op	        98.99 bytes/key	13378289 B/op	  101411 allocs/op
+BenchmarkMemoryPerKey/token_bucket-12                   	      44	  29702607 ns/op	        98.99 bytes/key	13379542 B/op	  101411 allocs/op
+PASS
+ok  	github.com/popeyethecode/throttlex/limiter	70.029s
+goos: windows
+goarch: amd64
+pkg: github.com/popeyethecode/throttlex/internal/middleware
+cpu: 12th Gen Intel(R) Core(TM) i5-12450H
+BenchmarkMiddleware       	  906597	      1713 ns/op	    1096 B/op	      15 allocs/op
+BenchmarkMiddleware-4     	 1618868	       711.2 ns/op	    1096 B/op	      15 allocs/op
+BenchmarkMiddleware-12    	 1602352	       743.6 ns/op	    1096 B/op	      15 allocs/op
+PASS
+ok  	github.com/popeyethecode/throttlex/internal/middleware	6.436s

@@ -1,0 +1,18 @@
+# Build output
+/bin/
+/throttlex
+*.exe
+*.test
+*.out
+*.prof
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+
+# Editors and OS files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

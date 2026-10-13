@@ -1,0 +1,10 @@
+.git
+.github
+.env
+.env.*
+*.md
+benchmarks
+docs
+*.exe
+*.test
+*.out
